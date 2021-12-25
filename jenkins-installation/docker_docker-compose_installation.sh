@@ -16,6 +16,7 @@ else
     sudo apt-get install docker-ce docker-ce-cli containerd.io -y
 fi
 
+#start and enable docker daemon
 systemctl start docker
 systemctl enable docker
 docker version
@@ -38,4 +39,9 @@ mkdir jenkins-data
 
 docker-compose up -d
 
+sleep 10
+printf  "\n\n"
+
 docker exec jenkins-server cat /var/jenkins_home/secrets/initialAdminPassword
+
+printf  "\n\n*******Unlock jenkins with above password on http://ip:8080***********\n\n"
