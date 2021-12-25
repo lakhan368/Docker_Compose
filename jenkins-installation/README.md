@@ -8,7 +8,7 @@
 
     ./docker_docker-compose_installation.sh
 
-#Hit the public Ip with 8080; http://<public-ip>:8080 and paste the code.
+#Hit the public Ip with 8080; http://public-ip:8080 and paste the code.
 
 
 
