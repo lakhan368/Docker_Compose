@@ -37,6 +37,14 @@ printf  "\n\n*******Docker and Docker-Compose installation completed.***********
 
 mkdir jenkins-data
 
+
+export Jenkins_IMAGE=jenkins/jenkins:lts
+
+VOLUME="$PWD/jenkins_data"
+export VOLUME
+echo $VOLUME
+
+
 docker-compose up -d
 
 sleep 10
