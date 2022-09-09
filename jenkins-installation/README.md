@@ -1,4 +1,4 @@
-# Installation of jenkins Via Docker-ComposeDocker_Compose
+# Installation of jenkins Via Docker-Compose
 
     git clone https://github.com/lakhan368/Docker_Compose.git
 
