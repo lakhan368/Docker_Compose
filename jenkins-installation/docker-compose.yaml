@@ -4,11 +4,11 @@ services:
 
   jenkins: 
 
-    image: ${Jenkins_IMAGE}
+    image: jenkins/jenkins:lts
 
     container_name: jenkins-server
 
-    privileged: true.
+    privileged: true
 
     hostname: jenkinsserver
 
