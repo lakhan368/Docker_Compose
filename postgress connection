@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# Set environment variables for PostgreSQL connection
+export PGHOST="mcapostgresdb.chy22gmq6lzs.us-east-1.rds.amazonaws.com"
+export PGDATABASE="postgressdb"
+export PGUSER="test"
+export PGPASSWORD="test1234"
+
+# Function to check if the PostgreSQL connection is successful
+check_connection() {
+    echo "Checking connection to PostgreSQL database..."
+    psql -c "\q" 2>/dev/null
+
+    if [ $? -eq 0 ]; then
+        echo "Connection to PostgreSQL database successful."
+        return 0
+    else
+        echo "Failed to connect to PostgreSQL database."
+        return 1
+    fi
+}
+
+# SQL query
+SQL_QUERY=$(cat <<EOF
+SELECT column1, column2
+FROM your_table_name
+WHERE condition1 = 'value1'
+  AND condition2 = 'value2'
+ORDER BY column1;
+EOF
+)
+
+# Check connection before running the query
+if check_connection; then
+    echo "Running the multi-line query..."
+    psql -c "$SQL_QUERY"
+
+    # Check if the query execution was successful
+    if [ $? -eq 0 ]; then
+        echo "Query executed successfully."
+    else
+        echo "Failed to execute query."
+    fi
+else
+    echo "Skipping query execution due to connection failure."
+fi
