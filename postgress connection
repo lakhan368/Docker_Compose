@@ -44,3 +44,32 @@ if check_connection; then
 else
     echo "Skipping query execution due to connection failure."
 fi
+
+
+
+
+
+import pg8000
+
+try:
+    connection = pg8000.connect(
+        user='your_db_user',
+        password='your_db_password',
+        host='your_db_host',
+        port=5432,  # default PostgreSQL port
+        database='your_db_name'
+    )
+
+    cursor = connection.cursor()
+    cursor.execute("SELECT version();")
+    record = cursor.fetchone()
+    print("You are connected to - ", record)
+
+except Exception as error:
+    print("Error while connecting to PostgreSQL", error)
+
+finally:
+    if connection:
+        cursor.close()
+        connection.close()
+        print("PostgreSQL connection is closed")
